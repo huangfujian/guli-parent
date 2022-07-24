@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.serviceacl.mapper.RoleMapper">
+
+    <select id="selectRoleByUserId" resultType="com.gx.serviceacl.entity.Role">
+        SELECT
+            *
+        FROM
+            `acl_user_role`
+                JOIN `acl_role` ON acl_user_role.`role_id`=acl_role.`id`
+        WHERE acl_user_role.`user_id` = #{id}
+    </select>
+</mapper>

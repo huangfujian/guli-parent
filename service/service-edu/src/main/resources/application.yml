@@ -1,0 +1,60 @@
+server:
+  port: 8001 #服务端口号
+spring:
+  application:
+    name: service-edu
+    #指定开发环境
+  profiles:
+    active: dev
+    #mysql 数据库连接
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_edu?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    #设置返回的全局json的时间格式
+  jackson:
+    #时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    #设置时区
+    time-zone: GMT+8 #(GMT表示格林威治时间 + 8 加8个小时)
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #指定nacos的注册中心地址
+  redis:
+    host: 192.168.80.132
+    port: 6379
+    database: 0
+    timeout: 20000
+    lettuce:
+      pool:
+        max-wait: -1
+        max-active: 20
+        max-idle: 5
+        min-idle: 0
+#开启mybatis日志
+mybatis-plus:
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #配置删除的值
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:com/gx/serviceedu/mapper/xml/*.xml #表示编译到classes文件下
+#表示当前项目使用debug
+#logging:
+#  level:
+#    root: debug
+feign:
+  hystrix:
+    enabled: true #开启hystrix、
+    #设置时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000

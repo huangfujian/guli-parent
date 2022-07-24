@@ -1,0 +1,23 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: service-oss
+    #配置环境
+  profiles:
+    active: dev  #生成环境
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+      file-size-threshold: 10MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+aliyun:
+  oss:
+    access-key-id: LTAI5tHzwCybBftRKLJzVAqG
+    access-key-secret: mzybEb7Gvpnx6hArmJe2LzEA1A6JXV
+    bucket-name: gx-guli
+    endpoint: oss-cn-guangzhou.aliyuncs.com

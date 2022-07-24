@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gx.serviceacl.mapper.PermissionMapper">
+
+    <select id="selectAllPermissionValue" resultType="java.lang.String">
+        select permission_value
+        from acl_permission
+    </select>
+    <select id="selectPermissionValueByUserId" resultType="java.lang.String">
+        SELECT
+            acl_permission.permission_value
+        FROM
+            acl_user_role
+                JOIN acl_role_permission ON acl_user_role.role_id = acl_role_permission.role_id
+                JOIN acl_permission ON acl_role_permission.permission_id=acl_permission.id
+        WHERE acl_user_role.`user_id` = #{id} AND NOT ISNULL(acl_permission.permission_value)
+    </select>
+    <select id="selectPermissionByUserId" resultType="com.gx.serviceacl.entity.Permission">
+        SELECT
+            DISTINCT acl_permission.*
+        FROM
+            acl_user_role
+                JOIN acl_role_permission
+                     ON acl_user_role.role_id = acl_role_permission.role_id
+                JOIN acl_permission
+                     ON acl_role_permission.permission_id = acl_permission.id
+        WHERE acl_user_role.`user_id` = #{id}
+    </select>
+</mapper>

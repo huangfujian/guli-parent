@@ -1,0 +1,24 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: service-vod
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-request-size: 1024MB
+      max-file-size: 1024MB
+      file-size-threshold: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #服务注册
+aliyun:
+  vod:
+    access-key-id: LTAI5tHzwCybBftRKLJzVAqG
+    access-key-secret: mzybEb7Gvpnx6hArmJe2LzEA1A6JXV
+#feign:
+#  hystrix:
+#    enabled: true #开启熔断机制
+##设置hystrix超时时间,默认1000ms

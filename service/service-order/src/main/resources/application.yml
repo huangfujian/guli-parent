@@ -1,0 +1,30 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: service-order
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_edu?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  profiles:
+    active: dev
+mybatis-plus:
+  mapper-locations: classpath:com/gx/serviceorder/mapper/xml/*.xml
+feign:
+  hystrix:
+    enabled: true #开启熔断机制
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 3000 # 设置hystrix超时时间，默认1000ms

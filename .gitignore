@@ -1,0 +1,14 @@
+# 项目排除路径
+/common/common-utils/target/
+/common/service-base/target/
+/common/spring-security/target/
+/infrastructure/api-gateway/target/
+/service/service-acl/target/
+/service/service-cms/target/
+/service/service-edu/target/
+/service/service-msm/target/
+/service/service-order/target/
+/service/service-oss/target/
+/service/service-statistics/target/
+/service/service-ucenter/target/
+/service/service-vod/target/
